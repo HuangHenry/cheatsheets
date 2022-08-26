@@ -1,8 +1,17 @@
-# To Find all file name ending with .pdf and remove them
-find -name *.pdf | xargs rm -rf
+# 删除包含指定文字的文件
+grep xxx ./src/ -lr | xargs rm -rf
+# 删除所有文件名匹配的文件
+find src -type f -name "*.cpp" -o -name "*.hpp" | xargs rm -rf
+# 指定分隔符 -d delimiter
+echo -e "a\tb\tc" | xargs -d "\t" mkdir
+# 显示命令先不执行（等待用户确认） -p print
+grep xxx ./src/ -lr | xargs -p rm -rf
+# 显示命令直接执行 -t
+grep xxx ./src/ -lr | xargs -t rm -rf
 
-# if file name contains spaces you should use this instead
-find -name *.pdf | xargs -I{} rm -rf '{}'
+# -I 可以对输入命令，用于包含多个参数的后续命令
+# 将所有包含指定文字的文件转入指定文件夹
+grep xxx ./src/ -lr | xargs -I file mv 'file' ./removed/
 
 # Will show every .pdf like:
 #	&toto.pdf=

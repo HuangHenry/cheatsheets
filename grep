@@ -1,17 +1,23 @@
 # 常规用法，显示所有匹配的行，-r 表示 recursive 递归搜索。支持正则表达式
 grep 'xxx' <file_or_path> -r
+
 # 显示所有不匹配的行，-v
 grep -v 'xxx' src -r
+
 # 只显示匹配部分，-o only
 grep -o 'xxx.*.jpg' src -r
+
 # 不显示文件名
 grep -h 'xxx' src -r
+
 # 显示行号（默认不显示行号，有点违反直觉），-n number
 grep -n 'xxx' src -r
 # 忽略大小写 -i，ignore
 grep -i 'xxx' src -r
 # 显示匹配行的上下文，-A2 上面2行，-B3 下面3行，-C4 上下各4行。
 grep -A2 -B3 -C4 'xxx' src 
+# 只显示文件，不显示匹配内容，以配合xargs使用，比如下面删除所有包含xxx的文件
+grep xxx src -rl | xargs rm
 # To find all files that match <pattern> in <dir>
 grep -rnw <dir> -e <pattern>
 # To exclude grep from your grepped output of ps:
@@ -19,3 +25,5 @@ grep -rnw <dir> -e <pattern>
 ps aux | grep '[h]ttpd'
 # Colour in red {bash} and keep all other lines
 ps aux | grep -E --color 'bash|$'
+
+
